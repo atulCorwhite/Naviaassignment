@@ -60,9 +60,6 @@ class MainActivity : BaseActivity() {
             if (!TextUtils.isEmpty(data.toString())){
                 adapter = WeekDietAdapter(this,arrayList,object :WeekDietAdapter.ClickHandle{
                     override fun onItemClick(position: Int, weekDataList: MutableList<Monday>) {
-
-                        val customCalendar = Calendar.getInstance()
-                        var mealTime=weekDataList.get(position).meal_time
                         startAlertAtParticularTime(weekDataList.get(position))
                     }
 
@@ -80,7 +77,6 @@ class MainActivity : BaseActivity() {
         val hour = dateTime[0].toInt()
         val minute = dateTime[1].toInt()
         Log.e("houre",hour.toString()+"minut"+minute.toString())
-
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         calendar[Calendar.HOUR_OF_DAY] = hour
@@ -89,7 +85,6 @@ class MainActivity : BaseActivity() {
 
         intent = Intent(this, AlarmBroadCast::class.java)
         intent.putExtra("foodName",get.food)
-
 
         var pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
         var  alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
@@ -105,8 +100,6 @@ class MainActivity : BaseActivity() {
         ).show()
 
     }
-
     override fun getContectView(): Int {
-        return R.layout.activity_main
-    }
+        return R.layout.activity_main }
 }

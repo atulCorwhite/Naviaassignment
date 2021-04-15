@@ -12,11 +12,8 @@ import com.example.navia.data.remote.modal.Monday
 
 class WeekDietAdapter(private val context: Context,var weekDataList: MutableList<Monday>,val myAdapterListener: WeekDietAdapter.ClickHandle): RecyclerView.Adapter<WeekDietAdapter.DataVH>() {
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataVH {
-
-                return DataVH(LayoutInflater.from(context).inflate(R.layout.week_diet_items, parent, false))
+        return DataVH(LayoutInflater.from(context).inflate(R.layout.week_diet_items, parent, false))
     }
 
     override fun getItemCount(): Int {

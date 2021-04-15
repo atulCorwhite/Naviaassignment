@@ -42,15 +42,11 @@ init {
         val intent = Intent(this, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-
-
-//        val pendingIntent = PendingIntent.getActivity(this, System.currentTimeMillis().toInt(), intent, 0)
         return NotificationCompat.Builder(applicationContext, channelID)
             .setContentTitle("Riminder For Food")
             .setContentText(mealName)
             .setSmallIcon(R.drawable.ic_alarm)
             .setColor(Color.YELLOW)
-//                .setContentIntent(pendingIntent)
             .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
             .setAutoCancel(true)
     }
