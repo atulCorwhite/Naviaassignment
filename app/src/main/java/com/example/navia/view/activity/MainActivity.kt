@@ -7,11 +7,13 @@ import android.content.Intent
 import android.os.Build
 import android.text.TextUtils
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.demoproject.view.baseview.BaseActivity
 import com.example.navia.R
 import com.example.navia.broadCast.AlarmBroadCast
@@ -27,13 +29,17 @@ class MainActivity : BaseActivity() {
     lateinit var recyclerView:RecyclerView
     lateinit var helthDataViewModal:HealthDataViewModal
     lateinit var adapter: WeekDietAdapter
+    lateinit var lav_main: LottieAnimationView
+
     override fun initActivity() {
         recyclerView = findViewById(R.id.recyclerView) as RecyclerView
+        lav_main = findViewById(R.id.lav_main) as LottieAnimationView
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager= LinearLayoutManager(this)
         helthDataViewModal = ViewModelProviders.of(this).get(HealthDataViewModal::class.java);
         helthDataViewModal.init()
         helthDataViewModal.getData()?.observe(this, Observer<HealthData> {  data->
+            lav_main.visibility=View.GONE
             var mondayDataList =data.week_diet_data.monday
             var thursdayDataList =data.week_diet_data.thursday
             var wednesdayDataList =data.week_diet_data.wednesday
@@ -74,7 +80,6 @@ class MainActivity : BaseActivity() {
         val hour = dateTime[0].toInt()
         val minute = dateTime[1].toInt()
         Log.e("houre",hour.toString()+"minut"+minute.toString())
-
 
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
